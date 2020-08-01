@@ -1,12 +1,16 @@
 import React from "react";
+import HomeScreen from "./HomeScreen";
 import "../styles/App.css";
-import RandomStreetview from "./RandomStreetview";
+import { Route, Switch } from "react-router-dom";
+import GameScreen from "./GameScreen";
 
 function App() {
   return (
-    <div>
-      <RandomStreetview />
-    </div>
+    <Switch>
+      <Route exact path="/" component={HomeScreen} />
+      <Route exact path="/game" component={GameScreen} />
+    </Switch>
   );
 }
+
 export default App;
