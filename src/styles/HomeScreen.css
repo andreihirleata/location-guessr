@@ -1,0 +1,25 @@
+.homescreen-logo {
+    display: flex;
+    justify-content: center;
+}
+
+.homescreen-title {
+    display: flex;
+    justify-content: center;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.75rem;
+}
+
+.homescreen-button {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    background-color: black;
+    color: white;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 15px 30px;
+}
