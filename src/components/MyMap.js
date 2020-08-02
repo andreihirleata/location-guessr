@@ -18,7 +18,7 @@ class MyMap extends Component {
   }
 
   onClick(t, map, coord) {
-    const { markerCoords, setMarkerCoords } = this.context;
+    const { setMarkerCoords } = this.context;
     const { latLng } = coord;
     const lat = latLng.lat();
     const lng = latLng.lng();
@@ -38,7 +38,12 @@ class MyMap extends Component {
   render() {
     return (
       <div className="mapStyles">
-        <Map google={this.props.google} zoom={1} onClick={this.onClick}>
+        <Map
+          google={this.props.google}
+          zoom={1}
+          onClick={this.onClick}
+          disableDefaultUI="true"
+        >
           {this.state.markers.map((marker, index) => (
             <Marker
               key={index}

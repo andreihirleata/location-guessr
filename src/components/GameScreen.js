@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import MyMap from "./MyMap";
 import RandomStreetview from "./RandomStreetview";
 import MarkerCoordsContext from "./context/MarkerCoordsContext";
@@ -6,27 +6,8 @@ import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 import { computeDistanceBetween } from "spherical-geometry-js";
 
 const GameScreen = () => {
-  // const [score, setScore] = useState(0);
   const { markerCoords } = useContext(MarkerCoordsContext);
   const { streetViewCoords } = useContext(StreetViewCoordsContext);
-
-  // useEffect(() => {
-  //   console.log(markerCoords, streetViewCoords);
-  //   if (markerCoords && streetViewCoords) {
-  //     const markerCoordsToLatLng = {
-  //       lat: markerCoords[0],
-  //       lng: markerCoords[1],
-  //     };
-  //     const streetViewCoordsToLatLng = {
-  //       lat: streetViewCoords[0].position.lat,
-  //       lng: streetViewCoords[0].position.lng,
-  //     };
-
-  //     console.log(
-  //       computeDistanceBetween(markerCoordsToLatLng, streetViewCoordsToLatLng)
-  //     );
-  //   }
-  // }, [markerCoords]);
 
   const calcScore = () => {
     if (markerCoords && streetViewCoords) {

@@ -7,9 +7,7 @@ const RandomStreetview = () => {
   const googleMapsApiKey = "AIzaSyCdtPEreWplsxM-Ir6nnyNOgrTJSZURJO4";
 
   const [coord, setCoord] = useState("");
-  const { streetViewCoords, setStreetViewCoords } = useContext(
-    StreetViewCoordsContext
-  );
+  const { setStreetViewCoords } = useContext(StreetViewCoordsContext);
 
   useEffect(() => {
     const getCoords = async () => {
@@ -26,8 +24,6 @@ const RandomStreetview = () => {
     };
     getCoords();
   }, []);
-
-  console.log(streetViewCoords);
 
   return (
     <div
