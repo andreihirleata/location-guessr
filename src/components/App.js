@@ -1,11 +1,17 @@
 import React from "react";
 import "../styles/App.css";
-import RandomStreetview from "./RandomStreetview";
+import HomeScreen from './HomeScreen';
+import RandomStreetView from "./RandomStreetView"
+import MyMap from './MyMap';
+
+
 
 function App() {
   return (
     <div>
-      <RandomStreetview />
+      <HomeScreen  />
+      <RandomStreetView />
+      <MyMap />
     </div>
   );
 }

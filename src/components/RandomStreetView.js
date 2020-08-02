@@ -1,4 +1,4 @@
-import randomStreetView from "random-streetview";
+import randomStreetView from 'random-streetview';
 import React, { useState, useEffect } from "react";
 import ReactStreetview from "react-streetview";
 
