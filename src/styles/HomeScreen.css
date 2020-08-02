@@ -20,6 +20,32 @@
     color: white;
     border-radius: 6px;
     font-size: 1rem;
+    font-family: 'Exo 2', sans-serif;
     font-weight: bold;
     padding: 15px 30px;
+}
+
+.howto {
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.instructions {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #696969;
+}
+
+.instructions:hover,
+.instructions:focus {
+    text-decoration: none;
 }
