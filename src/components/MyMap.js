@@ -1,34 +1,58 @@
 import React, { Component } from "react";
-import "../styles/MyMap.css"
-import {
-  Map,
-  Marker,
-  GoogleApiWrapper,
-} from "google-maps-react";
+import "../styles/MyMap.css";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import MarkerCoordsContext from "./context/MarkerCoordsContext";
 
+class MyMap extends Component {
+  static contextType = MarkerCoordsContext;
+  constructor(props) {
+    super(props);
+    this.state = {
+      markers: [
+        {
+          position: { lat: 0, lng: 0 },
+        },
+      ],
+    };
+    this.onClick = this.onClick.bind(this);
+  }
 
-export class MyMap extends Component {
+  onClick(t, map, coord) {
+    const { markerCoords, setMarkerCoords } = this.context;
+    const { latLng } = coord;
+    const lat = latLng.lat();
+    const lng = latLng.lng();
+
+    this.setState(() => {
+      return {
+        markers: [
+          {
+            position: { lat, lng },
+          },
+        ],
+      };
+    });
+    setMarkerCoords(this.state.markers);
+  }
+
   render() {
-    
     return (
-      <div>
-        <div className="mapStyles">
-        <Map
-        google={this.props.google}
-        zoom={2}
-        center={{ lat: 52.374490, lng: -0.713289}}
-        onClick={this.onMapClicked}
-        >
-      <Marker position={{ lat: 53.479489, lng: -2.2451148}} />
+      <div className="mapStyles">
+        <Map google={this.props.google} zoom={1} onClick={this.onClick}>
+          {this.state.markers.map((marker, index) => (
+            <Marker
+              key={index}
+              title={marker.title}
+              name={marker.name}
+              position={marker.position}
+            />
+          ))}
         </Map>
       </div>
-      </div>
-      
-      
     );
   }
 }
 
 export default GoogleApiWrapper({
-  apiKey: (""),
+  apiKey: "AIzaSyCdtPEreWplsxM-Ir6nnyNOgrTJSZURJO4",
 })(MyMap);
