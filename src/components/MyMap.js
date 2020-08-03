@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/MyMap.css";
-import {  InfoWindow, Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import {  Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import MarkerCoordsContext from "./context/MarkerCoordsContext";
 
 class MyMap extends Component {
