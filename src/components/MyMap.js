@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/MyMap.css";
-import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import {  InfoWindow, Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import MarkerCoordsContext from "./context/MarkerCoordsContext";
 
 class MyMap extends Component {
@@ -59,5 +59,5 @@ class MyMap extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCilez1b7dhQMTpuFmMz6hF5zYq2-ftkZI",
+  apiKey: "AIzaSyCgwPU15UpBtYMixR4ux1F79JVIG6s6yFU",
 })(MyMap);
