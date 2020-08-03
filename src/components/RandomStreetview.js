@@ -4,7 +4,7 @@ import ReactStreetview from "react-streetview";
 import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 
 const RandomStreetview = () => {
-  const googleMapsApiKey = "AIzaSyA1yYjVq9x43-eEjoXqLJBTc94fqaHA0VM";
+  const googleMapsApiKey = "AIzaSyCgwPU15UpBtYMixR4ux1F79JVIG6s6yFU";
 
   const [coord, setCoord] = useState("");
   const { setStreetViewCoords } = useContext(StreetViewCoordsContext);

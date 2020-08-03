@@ -5,6 +5,8 @@ import MarkerCoordsContext from "./context/MarkerCoordsContext";
 import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 import { computeDistanceBetween } from "spherical-geometry-js";
 
+import '../styles/GameScreen.css';
+
 const GameScreen = () => {
   const { markerCoords } = useContext(MarkerCoordsContext);
   const { streetViewCoords } = useContext(StreetViewCoordsContext);
@@ -33,15 +35,17 @@ const GameScreen = () => {
   return (
     <div className="game-screen">
       <RandomStreetview />
+      <div className="guessr-map">
       <MyMap />
       {markerCoords && streetViewCoords && (
-        <button
+        <button className="gs-button"
           onClick={calcScore}
-          style={{ zIndex: "100", position: "absolute", right: "0" }}
         >
-          Click
+          Guess!
         </button>
       )}
+      </div>
+      
     </div>
   );
 };
