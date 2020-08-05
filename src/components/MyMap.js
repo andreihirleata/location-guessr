@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../styles/MyMap.css";
-import {  Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 import MarkerCoordsContext from "./context/MarkerCoordsContext";
 
 class MyMap extends Component {
@@ -42,15 +42,10 @@ class MyMap extends Component {
           google={this.props.google}
           zoom={1}
           onClick={this.onClick}
-          disableDefaultUI="true"
+          disableDefaultUI={true}
         >
           {this.state.markers.map((marker, index) => (
-            <Marker
-              key={index}
-              title={marker.title}
-              name={marker.name}
-              position={marker.position}
-            />
+            <Marker key={index} position={marker.position} />
           ))}
         </Map>
       </div>

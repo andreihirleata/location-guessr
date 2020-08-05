@@ -1,19 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import MyMap from "./MyMap";
 import RandomStreetview from "./RandomStreetview";
 import MarkerCoordsContext from "./context/MarkerCoordsContext";
 import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 import { computeDistanceBetween } from "spherical-geometry-js";
 import Modal from "react-modal";
-
+import ModalMap from "./ModalMap";
 import "../styles/GameScreen.css";
 
 const GameScreen = () => {
   const { markerCoords } = useContext(MarkerCoordsContext);
   const { streetViewCoords } = useContext(StreetViewCoordsContext);
-
-  let [modal, setModal] = useState(false);
-  let [modalContent, setModalContent] = useState("");
+  const [distanceinKm, setDistanceinKm] = useState(0);
+  const [score, setScore] = useState(0);
 
   const customStyles = {
     content: {
@@ -26,14 +25,9 @@ const GameScreen = () => {
     },
   };
 
-  let subtitle;
   const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
-  };
-
-  const afterOpenModal = () => {
-    subtitle.style.color = "#f00";
   };
 
   const closeModal = () => {
@@ -50,24 +44,21 @@ const GameScreen = () => {
         lat: markerCoords[0].position.lat,
         lng: markerCoords[0].position.lng,
       };
-      const distanceinKm = Math.floor(
-        computeDistanceBetween(markerCoordsToLatLng, streetViewCoordsToLatLng) /
-          1000
+      setDistanceinKm(
+        Math.floor(
+          computeDistanceBetween(
+            markerCoordsToLatLng,
+            streetViewCoordsToLatLng
+          ) / 1000
+        )
       );
-      let handleModalOpen = (content = false) => {
-        setModal(!modal);
-        if (content) {
-          setModalContent(content);
-        }
-      };
 
-      let score;
-      distanceinKm <= 2000 ? (score = 10000 - distanceinKm * 5) : (score = 0);
-      /*alert(
-        `You have scored ${score} points \nThe distance was ${distanceinKm}Km`
-      ); */
+      distanceinKm <= 2000 ? setScore(10000 - distanceinKm * 5) : setScore(0);
     }
   };
+  useEffect(() => {
+    calcScore();
+  }, [markerCoords]);
   return (
     <div>
       <div className="game-screen">
@@ -80,19 +71,36 @@ const GameScreen = () => {
                 className="gs-button"
                 onClick={() => {
                   openModal();
-                  calcScore();
                 }}
               >
                 Guess!
               </button>
               <Modal
                 isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
+                ariaHideApp={false}
               >
-                <h2 ref={_subtitle => (subtitle = _subtitle)}>You have scored  points \nThe distance was Km</h2>
-                <button onClick={closeModal}>close</button>
+                <ModalMap
+                  playerPosition={{
+                    lat: streetViewCoords[0],
+                    lng: streetViewCoords[1],
+                  }}
+                  locationPosition={{
+                    lat: markerCoords[0].position.lat,
+                    lng: markerCoords[0].position.lng,
+                  }}
+                  latLngLocationPosition={{
+                    lat: streetViewCoords[0],
+                    lng: streetViewCoords[1],
+                  }}
+                  latLngPlayerPosition={{
+                    lat: markerCoords[0].position.lat,
+                    lng: markerCoords[0].position.lng,
+                  }}
+                  score={score}
+                  distanceInKm={distanceinKm}
+                ></ModalMap>
               </Modal>
             </div>
           )}
