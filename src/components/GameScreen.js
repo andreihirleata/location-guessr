@@ -13,6 +13,7 @@ const GameScreen = () => {
   const { streetViewCoords } = useContext(StreetViewCoordsContext);
   const [distanceinKm, setDistanceinKm] = useState(0);
   const [score, setScore] = useState(0);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const customStyles = {
     content: {
@@ -25,7 +26,6 @@ const GameScreen = () => {
     },
   };
 
-  const [modalIsOpen, setIsOpen] = useState(false);
   const openModal = () => {
     setIsOpen(true);
   };
@@ -58,7 +58,8 @@ const GameScreen = () => {
   };
   useEffect(() => {
     calcScore();
-  }, [markerCoords]);
+  });
+
   return (
     <div>
       <div className="game-screen">

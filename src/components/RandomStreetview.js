@@ -23,7 +23,6 @@ const RandomStreetview = () => {
       setStreetViewCoords([data[0], data[1]]);
     };
     getCoords();
-    // eslint-disable-next-line
   }, []);
 
   return (
