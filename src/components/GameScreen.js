@@ -77,6 +77,7 @@ const GameScreen = () => {
                 Guess!
               </button>
               <Modal
+                shouldCloseOnOverlayClick={false}
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={customStyles}
