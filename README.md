@@ -7,6 +7,7 @@ This a game built with React.
 * Pin your guess on the world map on the bottom    
   right and 
 * Click on the 'Guess' button.
+
 Your point is revealed with the proximity of your guess to the actual location.
 * And you can play again!  
 
@@ -34,7 +35,9 @@ We are hoping to go back on this project in the nearest future to;
 
 ## Author
 Shelby Harrison
+
 Andrei Hirleata
+
 Aaron Hays
 
 
