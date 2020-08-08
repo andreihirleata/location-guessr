@@ -47,7 +47,10 @@ class ModalMap extends Component {
             km away.
           </p>
 
-          <button type="button" onClick={() => window.location.reload(true)}>
+          <button
+            type="button"
+            onClick={() => (window.location.href = window.location.href)}
+          >
             Play Again
           </button>
         </div>
