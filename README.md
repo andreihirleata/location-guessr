@@ -33,7 +33,7 @@ We are hoping to go back on this project in the nearest future to;
   styling, different game levels, hints, rewards & medals, and to  
 * work on the testing.
 
-## Author
+## Authors
 Shelby Harrison
 
 Andrei Hirleata
