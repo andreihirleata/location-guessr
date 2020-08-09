@@ -4,7 +4,7 @@ This a game built with React.
 * At the click of the 'play' button, you will be taken to
   a random location in the world. 
 * Explore the city. 
-* Pin your guess on the world map on the bottom    
+* Pin your guess on the world map at the bottom    
   right and 
 * Click on the 'Guess' button.
 
@@ -16,10 +16,10 @@ To interact, there are two options;
 ## 1.
 In your computer terminal, create a directory: ```mkdir 'your folder name'```
 ```
-fork the repo
-git clone git@github.com:andreihirleata/location-guessr.git
-cd your-project-folder-name
-npm install
+*fork the repo:
+  git clone git@github.com:andreihirleata/location-guessr.git
+  cd your-project-folder-name
+*npm install
 
 *npm start: open (http://localhost:3000) to view it in the browser.
 ```
