@@ -1,62 +1,58 @@
 import React, { Component } from "react";
 import "../styles/MyMap.css";
+import {  Map, Marker, GoogleApiWrapper } from "google-maps-react";
+import MarkerCoordsContext from "./context/MarkerCoordsContext";
 
-import {
-  Map,
-  InfoWindow,
-  Marker,
-  GoogleApiWrapper,
-} from "google-maps-react";
+class MyMap extends Component {
+  static contextType = MarkerCoordsContext;
+  constructor(props) {
+    super(props);
+    this.state = {
+      markers: [
+        {
+          position: { lat: 0, lng: 0 },
+        },
+      ],
+    };
+    this.onClick = this.onClick.bind(this);
+  }
 
-export class MyMap extends Component {
-  state = {
-    showingInfoWindow: false,
-    activeMarker: {},
-    selectedPlace: {},
-  };
+  onClick(t, map, coord) {
+    const { setMarkerCoords } = this.context;
+    const { latLng } = coord;
+    const lat = latLng.lat();
+    const lng = latLng.lng();
 
-  onMarkerClick = (props, marker, e) => {
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true,
+    this.setState(() => {
+      return {
+        markers: [
+          {
+            position: { lat, lng },
+          },
+        ],
+      };
     });
-  };
-
-  onClose = (props) => {
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        showingInfoWindow: false,
-        activeMarker: null,
-      });
-    }
-  };
+    setMarkerCoords(this.state.markers);
+  }
 
   render() {
     return (
-      <div>
-        <div className="mapStyles">
-          <Map
-            google={this.props.google}
-            zoom={2}
-            initialCenter={{ lat: 52.37449, lng: -0.713289 }}
-            // onClick={this.onMapClicked}
-          >
+      <div className="mapStyles">
+        <Map
+          google={this.props.google}
+          zoom={1}
+          onClick={this.onClick}
+          disableDefaultUI="true"
+        >
+          {this.state.markers.map((marker, index) => (
             <Marker
-              onClick={this.onMarkerClick}
-              name={`current marker position`}
+              key={index}
+              title={marker.title}
+              name={marker.name}
+              position={marker.position}
             />
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow}
-              onClose={this.onClose}
-            >
-              <div><h4>{this.state.selectedPlace.name}</h4></div>
-              </InfoWindow>
-
-    
-          </Map>
-        </div>
+          ))}
+        </Map>
       </div>
     );
   }
