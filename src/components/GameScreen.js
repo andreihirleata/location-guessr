@@ -5,12 +5,16 @@ import MarkerCoordsContext from "./context/MarkerCoordsContext";
 import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 import { computeDistanceBetween } from "spherical-geometry-js";
 import Modal from "react-modal";
+import ModalMap from "./ModalMap"
 
 import "../styles/GameScreen.css";
 
 const GameScreen = () => {
   const { markerCoords } = useContext(MarkerCoordsContext);
   const { streetViewCoords } = useContext(StreetViewCoordsContext);
+  const [distanceinKm, setDistanceinKm] = useState(0);
+  const [score, setScore] = useState(0);
+  
 
   let [modal, setModal] = useState(false);
   let [modalContent, setModalContent] = useState("");
@@ -50,10 +54,7 @@ const GameScreen = () => {
         lat: markerCoords[0].position.lat,
         lng: markerCoords[0].position.lng,
       };
-      const distanceinKm = Math.floor(
-        computeDistanceBetween(markerCoordsToLatLng, streetViewCoordsToLatLng) /
-          1000
-      );
+
       let handleModalOpen = (content = false) => {
         setModal(!modal);
         if (content) {
@@ -61,8 +62,16 @@ const GameScreen = () => {
         }
       };
 
-      let score;
-      distanceinKm <= 2000 ? (score = 10000 - distanceinKm * 5) : (score = 0);
+       setDistanceinKm(
+        Math.floor(
+          computeDistanceBetween(
+            markerCoordsToLatLng,
+            streetViewCoordsToLatLng
+          ) / 1000
+        )
+      );
+
+      distanceinKm <= 2000 ? setScore(10000 - distanceinKm * 5) : setScore(0);
       /*alert(
         `You have scored ${score} points \nThe distance was ${distanceinKm}Km`
       ); */
@@ -91,8 +100,28 @@ const GameScreen = () => {
                 onRequestClose={closeModal}
                 style={customStyles}
               >
-                <h2 ref={_subtitle => (subtitle = _subtitle)}>You have scored  points \nThe distance was Km</h2>
+                <h2 ref={_subtitle => (subtitle = _subtitle)}>You have scored {score} points. The distance was {distanceinKm} Km</h2>
                 <button onClick={closeModal}>close</button>
+                <ModalMap
+                  playerPosition={{
+                    lat: streetViewCoords[0],
+                    lng: streetViewCoords[1],
+                  }}
+                  locationPosition={{
+                    lat: markerCoords[0].position.lat,
+                    lng: markerCoords[0].position.lng,
+                  }}
+                  latLngLocationPosition={{
+                    lat: streetViewCoords[0],
+                    lng: streetViewCoords[1],
+                  }}
+                  latLngPlayerPosition={{
+                    lat: markerCoords[0].position.lat,
+                    lng: markerCoords[0].position.lng,
+                  }}
+                  score={score}
+                  distanceInKm={distanceinKm}
+                ></ModalMap>
               </Modal>
             </div>
           )}
