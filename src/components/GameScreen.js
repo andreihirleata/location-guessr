@@ -53,7 +53,7 @@ const GameScreen = () => {
         )
       );
 
-      distanceinKm <= 2000 ? setScore(10000 - distanceinKm * 5) : setScore(0);
+      distanceinKm <= 10000 ? setScore(10000 - distanceinKm) : setScore(0);
     }
   };
   useEffect(() => {
@@ -65,7 +65,7 @@ const GameScreen = () => {
       <div className="game-screen">
         <RandomStreetview />
         <div className="guessr-map">
-          <MyMap />
+          {streetViewCoords && <MyMap />}
           {markerCoords && streetViewCoords && (
             <div>
               <button

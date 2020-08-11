@@ -22,7 +22,13 @@ const RandomStreetview = () => {
       });
       setStreetViewCoords([data[0], data[1]]);
     };
-    getCoords();
+
+    try {
+      getCoords();
+    } catch (error) {
+      console.log(error);
+      getCoords();
+    }
   }, []);
 
   return (

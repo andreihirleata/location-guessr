@@ -10,7 +10,7 @@ class MyMap extends Component {
     this.state = {
       markers: [
         {
-          position: { lat: 0, lng: 0 },
+          position: {},
         },
       ],
     };

@@ -8,9 +8,7 @@ import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 
 function App() {
   const [streetViewCoords, setStreetViewCoords] = useState(null);
-  const [markerCoords, setMarkerCoords] = useState([
-    { position: { lat: 50, lng: 50 } },
-  ]);
+  const [markerCoords, setMarkerCoords] = useState(null);
 
   return (
     <StreetViewCoordsContext.Provider
