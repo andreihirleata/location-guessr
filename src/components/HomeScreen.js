@@ -27,7 +27,7 @@ const HomeScreen = () => {
       </div>
       <div className="homescreen-button">
         <button className="button" type="button" onClick={handleButtonClick}>
-          Play!
+          Play! 
           <FontAwesomeIcon icon={faGamepad} size="lg" />
         </button>
       </div>
