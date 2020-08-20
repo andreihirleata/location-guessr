@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Map, Marker, GoogleApiWrapper, Polyline } from "google-maps-react";
-import '../styles/ModalMap.css';
+import "../styles/ModalMap.css";
 
 class ModalMap extends Component {
   render() {
@@ -42,12 +42,16 @@ class ModalMap extends Component {
           />
         </Map>
 
-        <div className="modal-content" style={{ position: "absolute", bottom: "0", right: "0" }}>
+        <div className="modal-content">
           <p className="modal-score">
             Your score is {this.props.score}. You were {this.props.distanceInKm}
             km away.
           </p>
-          <button className="button" type="button" onClick={() => window.location.reload(false)}>
+          <button
+            className="button"
+            type="button"
+            onClick={() => window.location.reload(false)}
+          >
             Play Again
           </button>
         </div>
