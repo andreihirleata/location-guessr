@@ -7,7 +7,10 @@ class ModalMap extends Component {
     return (
       <div style={{ height: "50vh", width: "50vw" }}>
         <Map
-          style={{ height: "70%", width: "100%" }}
+          style={{
+            height: "70%",
+            width: "100%",
+          }}
           google={this.props.google}
           zoom={2}
           disableDefaultUI={true}
