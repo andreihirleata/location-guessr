@@ -57,7 +57,7 @@ const GameScreen = () => {
         )
       );
 
-      distanceinKm <= 10000 ? setScore(10000 - distanceinKm) : setScore(0);
+      distanceinKm <= 5000 ? setScore(10000 - distanceinKm * 2) : setScore(0);
     }
   };
   useEffect(() => {
