@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "async-await-retry": "^1.1.0",
     "autoprefixer": "^9.8.5",
     "colorette": "^1.2.0",
     "google-maps-react": "^2.0.6",

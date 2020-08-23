@@ -11,24 +11,28 @@ const RandomStreetview = () => {
 
   useEffect(() => {
     const getCoords = async () => {
-      const data = await randomStreetView.getRandomLocation();
-      setCoord({
-        position: { lat: data[0], lng: data[1] },
-        pov: { heading: 100, pitch: 0 },
-        addressControl: false,
-        showRoadLabels: false,
-        zoomControl: false,
-        panControl: false,
-      });
-      setStreetViewCoords([data[0], data[1]]);
+      let isValid = false;
+      let attempts = 0;
+      while (!isValid && attempts <= 3) {
+        try {
+          const data = await randomStreetView.getRandomLocation();
+          setCoord({
+            position: { lat: data[0], lng: data[1] },
+            pov: { heading: 100, pitch: 0 },
+            addressControl: false,
+            showRoadLabels: false,
+            zoomControl: false,
+            panControl: false,
+          });
+          setStreetViewCoords([data[0], data[1]]);
+          isValid = true;
+        } catch (err) {
+          console.log(err);
+          attempts += 1;
+        }
+      }
     };
-
-    try {
-      getCoords();
-    } catch (error) {
-      console.log(error);
-      getCoords();
-    }
+    getCoords();
   }, []);
 
   return (

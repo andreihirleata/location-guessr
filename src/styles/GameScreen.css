@@ -30,7 +30,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  margin: 5px;
+  margin-top: 20px;
 }
 
 .gs-button:before {

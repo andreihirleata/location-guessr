@@ -65,53 +65,52 @@ const GameScreen = () => {
   });
 
   return (
-    <div>
-      <div className="game-screen">
-        <RandomStreetview />
-        <div className="guessr-map">
-          {streetViewCoords && <MyMap />}
-          {markerCoords && streetViewCoords && (
-            <div>
-              <button
-                className="gs-button"
-                onClick={() => {
-                  openModal();
-                }}
-              >
-                Guess!
-              </button>
-              <Modal
-                shouldCloseOnOverlayClick={false}
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                style={customStyles}
-                ariaHideApp={false}
-              >
-                <ModalMap
-                  playerPosition={{
-                    lat: streetViewCoords[0],
-                    lng: streetViewCoords[1],
-                  }}
-                  locationPosition={{
-                    lat: markerCoords[0].position.lat,
-                    lng: markerCoords[0].position.lng,
-                  }}
-                  latLngLocationPosition={{
-                    lat: streetViewCoords[0],
-                    lng: streetViewCoords[1],
-                  }}
-                  latLngPlayerPosition={{
-                    lat: markerCoords[0].position.lat,
-                    lng: markerCoords[0].position.lng,
-                  }}
-                  score={score}
-                  distanceInKm={distanceinKm}
-                ></ModalMap>
-              </Modal>
-            </div>
-          )}
+    <div className="game-screen">
+      <RandomStreetview />
+      <div className="guessr-map">{streetViewCoords && <MyMap />}</div>
+      {markerCoords && streetViewCoords && (
+        <div>
+          <div>
+            <button
+              className="gs-button"
+              onClick={() => {
+                openModal();
+              }}
+            >
+              Guess!
+            </button>
+          </div>
+
+          <Modal
+            shouldCloseOnOverlayClick={false}
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            style={customStyles}
+            ariaHideApp={false}
+          >
+            <ModalMap
+              playerPosition={{
+                lat: streetViewCoords[0],
+                lng: streetViewCoords[1],
+              }}
+              locationPosition={{
+                lat: markerCoords[0].position.lat,
+                lng: markerCoords[0].position.lng,
+              }}
+              latLngLocationPosition={{
+                lat: streetViewCoords[0],
+                lng: streetViewCoords[1],
+              }}
+              latLngPlayerPosition={{
+                lat: markerCoords[0].position.lat,
+                lng: markerCoords[0].position.lng,
+              }}
+              score={score}
+              distanceInKm={distanceinKm}
+            ></ModalMap>
+          </Modal>
         </div>
-      </div>
+      )}
     </div>
   );
 };
