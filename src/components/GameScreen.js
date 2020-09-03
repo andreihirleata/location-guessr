@@ -39,7 +39,7 @@ const GameScreen = () => {
   };
 
   const calcScore = () => {
-    if (markerCoords && streetViewCoords) {
+    if (markerCoords && streetViewCoords && modalIsOpen) {
       const markerCoordsToLatLng = {
         lat: streetViewCoords[0],
         lng: streetViewCoords[1],

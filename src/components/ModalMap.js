@@ -47,8 +47,9 @@ class ModalMap extends Component {
 
         <div className="modal-content">
           <p className="modal-score">
-            Your score is {this.props.score}. You were {this.props.distanceInKm}
-            km away.
+            Your score is <strong>{this.props.score}</strong>. You were{" "}
+            <strong>{this.props.distanceInKm} </strong>
+            km ({Math.floor(this.props.distanceInKm * 0.621371)} miles) away.
           </p>
           <button
             className="button"
