@@ -43,6 +43,7 @@ class MyMap extends Component {
           zoom={1}
           onClick={this.onClick}
           disableDefaultUI={true}
+          initialCenter={{ lat: 33, lng: -40 }}
         >
           {this.state.markers.map((marker, index) => (
             <Marker key={index} position={marker.position} />
