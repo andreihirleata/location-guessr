@@ -45,9 +45,10 @@ class MyMap extends Component {
           disableDefaultUI={true}
           initialCenter={{ lat: 33, lng: -40 }}
         >
-          {this.state.markers.map((marker, index) => (
-            <Marker key={index} position={marker.position} />
-          ))}
+          {this.state.markers &&
+            this.state.markers.map((marker, index) => (
+              <Marker key={index} position={marker.position} />
+            ))}
         </Map>
       </div>
     );
