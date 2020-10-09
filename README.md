@@ -25,7 +25,7 @@ In your computer terminal, create a directory: ```mkdir 'your folder name'```
 ```
 OR
 ## 2. 
-Click on the link: [location-guessr](https://objective-pare-9e9a26.netlify.app/)
+Click on the link: [location-guessr](https://locationguessrv1.web.app/)
 
 We are hoping to go back on this project in the nearest future to;
 * make it more responsive for different mobile devices,
