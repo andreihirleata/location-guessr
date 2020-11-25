@@ -4,7 +4,7 @@ import ReactStreetview from "react-streetview";
 import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 
 const RandomStreetview = () => {
-  const googleMapsApiKey = "AIzaSyCgwPU15UpBtYMixR4ux1F79JVIG6s6yFU";
+  const googleMapsApiKey = "";
 
   const [coord, setCoord] = useState("");
   const { setStreetViewCoords } = useContext(StreetViewCoordsContext);
@@ -13,6 +13,7 @@ const RandomStreetview = () => {
     const getCoords = async () => {
       let isValid = false;
       let attempts = 0;
+
       while (!isValid && attempts <= 3) {
         try {
           const data = await randomStreetView.getRandomLocation();
@@ -24,15 +25,19 @@ const RandomStreetview = () => {
             zoomControl: false,
             panControl: false,
           });
+
           setStreetViewCoords([data[0], data[1]]);
           isValid = true;
         } catch (err) {
           console.log(err);
+
           attempts += 1;
         }
       }
     };
+
     getCoords();
+    console.log(StreetViewCoordsContext);
   }, []);
 
   return (

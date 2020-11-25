@@ -1,17 +1,19 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../styles/HomeScreen.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGamepad } from "@fortawesome/free-solid-svg-icons";
+import randomStreetView from "random-streetview";
 
 const HomeScreen = () => {
   const history = useHistory();
-
-  const handleButtonClick = () => {
-    history.push("/game");
+  const test = async () => {
+    const data = await randomStreetView.getRandomLocation();
+    console.log(data);
   };
 
   const handleLinkClick = () => {
+    test();
     alert(
       "Your goal is to guess where the location currently is. \nOnce you are ready to take a guess, pin the map and find out how close you are."
     );
@@ -26,10 +28,12 @@ const HomeScreen = () => {
         <h1 className="title">Location Guessr</h1>
       </div>
       <div className="homescreen-button">
-        <button className="button" type="button" onClick={handleButtonClick}>
-          Play! 
-          <FontAwesomeIcon icon={faGamepad} size="lg" />
-        </button>
+        <Link to="/game" style={{ textDecoration: "none" }}>
+          <button className="button" type="button">
+            Play!
+            <FontAwesomeIcon icon={faGamepad} size="lg" />
+          </button>
+        </Link>
       </div>
       <div className="howto">
         <button
