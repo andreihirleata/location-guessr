@@ -11,7 +11,6 @@ const RandomStreetview = () => {
   
   useEffect(() => {
     const location = new randomLocation()
-    console.log(location);
           setCoord({
             position: { lat: location.lat, lng: location.lng },
             pov: { heading: 100, pitch: 0 },
@@ -21,7 +20,7 @@ const RandomStreetview = () => {
             panControl: false,
           });
           setStreetViewCoords([location.lat,location.lng])
-    // getCoords();
+
   }, []);
 
  if(!coord) {return(<div>Loading...</div>)}
