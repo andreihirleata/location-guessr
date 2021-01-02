@@ -56,5 +56,5 @@ class MyMap extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCgwPU15UpBtYMixR4ux1F79JVIG6s6yFU",
+  apiKey: "AIzaSyCdtPEreWplsxM-Ir6nnyNOgrTJSZURJO4",
 })(MyMap);

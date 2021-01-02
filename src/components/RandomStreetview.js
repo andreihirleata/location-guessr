@@ -1,41 +1,32 @@
-import randomStreetView from "random-streetview";
+import {randomLocation} from "../locations/location"
 import React, { useState, useEffect, useContext } from "react";
-import ReactStreetview from "react-streetview";
+import Streetview from "react-google-streetview";
 import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 
 const RandomStreetview = () => {
-  const googleMapsApiKey = "AIzaSyCgwPU15UpBtYMixR4ux1F79JVIG6s6yFU";
+  const googleMapsApiKey = "AIzaSyCdtPEreWplsxM-Ir6nnyNOgrTJSZURJO4";
 
-  const [coord, setCoord] = useState("");
+  const [coord, setCoord] = useState();
   const { setStreetViewCoords } = useContext(StreetViewCoordsContext);
-
+  
   useEffect(() => {
-    const getCoords = async () => {
-      let isValid = false;
-      let attempts = 0;
-      while (!isValid && attempts <= 3) {
-        try {
-          const data = await randomStreetView.getRandomLocation();
+    const location = new randomLocation()
+    console.log(location);
           setCoord({
-            position: { lat: data[0], lng: data[1] },
+            position: { lat: location.lat, lng: location.lng },
             pov: { heading: 100, pitch: 0 },
             addressControl: false,
             showRoadLabels: false,
             zoomControl: false,
             panControl: false,
           });
-          setStreetViewCoords([data[0], data[1]]);
-          isValid = true;
-        } catch (err) {
-          console.log(err);
-          attempts += 1;
-        }
-      }
-    };
-    getCoords();
+          setStreetViewCoords([location.lat,location.lng])
+    // getCoords();
   }, []);
 
-  return (
+ if(!coord) {return(<div>Loading...</div>)}
+ else
+ {return (
     <div
       style={{
         width: "100vw",
@@ -43,14 +34,16 @@ const RandomStreetview = () => {
         backgroundColor: "#eeeeee",
       }}
     >
-      {coord && (
-        <ReactStreetview
+      
+        <Streetview
           apiKey={googleMapsApiKey}
           streetViewPanoramaOptions={coord}
+          
         />
-      )}
+  
     </div>
   );
-};
+};}
+
 
 export default RandomStreetview;

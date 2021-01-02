@@ -1,15 +1,10 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../styles/HomeScreen.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGamepad } from "@fortawesome/free-solid-svg-icons";
 
 const HomeScreen = () => {
-  const history = useHistory();
-
-  const handleButtonClick = () => {
-    history.push("/game");
-  };
 
   const handleLinkClick = () => {
     alert(
@@ -26,10 +21,10 @@ const HomeScreen = () => {
         <h1 className="title">Location Guessr</h1>
       </div>
       <div className="homescreen-button">
-        <button className="button" type="button" onClick={handleButtonClick}>
+       <Link to="/game"> <button className="button" type="button" >
           Play! 
           <FontAwesomeIcon icon={faGamepad} size="lg" />
-        </button>
+        </button> </Link>
       </div>
       <div className="howto">
         <button
