@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import MyMap from "./MyMap";
+import WorldMap from "./WorldMap";
 import RandomStreetview from "./RandomStreetview";
 import MarkerCoordsContext from "./context/MarkerCoordsContext";
 import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
@@ -39,14 +39,14 @@ const GameScreen = () => {
   };
 
   const calcScore = () => {
-    if (markerCoords && streetViewCoords && modalIsOpen) {
+    if (markerCoords && modalIsOpen) {
       const markerCoordsToLatLng = {
-        lat: streetViewCoords[0],
-        lng: streetViewCoords[1],
+        lat: markerCoords.markerLat,
+        lng: markerCoords.markerLng,
       };
       const streetViewCoordsToLatLng = {
-        lat: markerCoords[0].position.lat,
-        lng: markerCoords[0].position.lng,
+        lat: markerCoords.locationLat,
+        lng:  markerCoords.locationLng,
       };
       setDistanceinKm(
         Math.floor(
@@ -62,13 +62,15 @@ const GameScreen = () => {
   };
   useEffect(() => {
     calcScore();
+    console.log(markerCoords)
   });
 
   return (
     <div className="game-screen">
-      <RandomStreetview />
-      <div className="guessr-map">{streetViewCoords && <MyMap />}</div>
-      {markerCoords && streetViewCoords && (
+      {/* <RandomStreetview /> */}
+      <div className="guessr-map">  <WorldMap /></div>
+  
+      {markerCoords && (
         <div>
           <div>
             <button
@@ -90,20 +92,20 @@ const GameScreen = () => {
           >
             <ModalMap
               playerPosition={{
-                lat: streetViewCoords[0],
-                lng: streetViewCoords[1],
+                lat: markerCoords.markerLat,
+                lng: markerCoords.markerLng,
               }}
               locationPosition={{
-                lat: markerCoords[0].position.lat,
-                lng: markerCoords[0].position.lng,
+                lat: markerCoords.locationLat,
+                lng: markerCoords.locationLng,
               }}
               latLngLocationPosition={{
-                lat: streetViewCoords[0],
-                lng: streetViewCoords[1],
+                lat: markerCoords.locationLat,
+                lng: markerCoords.locationLng,
               }}
               latLngPlayerPosition={{
-                lat: markerCoords[0].position.lat,
-                lng: markerCoords[0].position.lng,
+                lat: markerCoords.markerLat,
+                lng: markerCoords.markerLng,
               }}
               score={score}
               distanceInKm={distanceinKm}
