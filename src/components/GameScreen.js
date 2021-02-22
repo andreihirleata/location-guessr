@@ -1,8 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import WorldMap from "./WorldMap";
-import RandomStreetview from "./RandomStreetview";
 import MarkerCoordsContext from "./context/MarkerCoordsContext";
-import StreetViewCoordsContext from "./context/StreetViewCoordsContext";
 import { computeDistanceBetween } from "spherical-geometry-js";
 import Modal from "react-modal";
 import ModalMap from "./ModalMap";
@@ -10,7 +8,6 @@ import "../styles/GameScreen.css";
 
 const GameScreen = () => {
   const { markerCoords } = useContext(MarkerCoordsContext);
-  const { streetViewCoords } = useContext(StreetViewCoordsContext);
   const [distanceinKm, setDistanceinKm] = useState(0);
   const [score, setScore] = useState(0);
   const [modalIsOpen, setIsOpen] = useState(false);

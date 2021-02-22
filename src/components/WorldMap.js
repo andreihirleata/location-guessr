@@ -1,6 +1,5 @@
 import React, {Component, createRef } from 'react'
 import MarkerCoordsContext from "./context/MarkerCoordsContext";
-import StreetViewCoordsContext from "./context/StreetViewCoordsContext"
 import { randomLocation } from "../locations/location"
 
 let markers = [];
