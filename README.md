@@ -31,7 +31,6 @@ We are hoping to go back on this project in the nearest future to;
 * make it more responsive for different mobile devices,
 * make it more immersive by improving the scoring, add sounds, more  
   styling, different game levels, hints, rewards & medals, and to  
-* work on the testing.
 
 ## Authors
 Shelby Harrison
